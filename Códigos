@@ -1,0 +1,168 @@
+#7DaysOfCode - Lógica JS 1/7: Operaciones Booleanas:
+let numeroUn = 1;
+let stringUn = '1';
+
+let numeroTreinta = 30;
+let stringTreinta = '30';
+
+let numeroDiez = 10;
+let stringDiez = '10';
+
+if (numeroUn == stringUn && numeroUn !== stringUn) {
+  console.log('Las variables numeroUn y stringUn tienen el mismo valor, pero tipos diferentes');
+} else {
+  console.log('Las variables numeroUn y stringUn no tienen el mismo valor');
+}
+
+if (numeroTreinta === stringTreinta) {
+  console.log('Las variables numeroTreinta y stringTreinta tienen el mismo valor y el mismo tipo');
+} else {
+  console.log('Las variables numeroTreinta y stringTreinta no tienen el mismo tipo');
+}
+
+if (numeroDiez == stringDiez && numeroDiez !== stringDiez) {
+  console.log('Las variables numeroDiez y stringDiez tienen el mismo valor, pero tipos diferentes');
+} else {
+  console.log('Las variables numeroDiez y stringDiez no tienen el mismo valor');
+}
+
+#7DaysOfCode - Lógica JS 2/7: Variables:
+// Preguntas al usuario
+let nombre = prompt("¿Cuál es tu nombre?");
+let edad = prompt("¿Cuántos años tienes?");
+let lenguaje = prompt("¿Qué lenguaje de programación estás estudiando?");
+
+// Mensaje inicial
+alert(`Hola ${nombre}, tienes ${edad} años y ya estás aprendiendo ${lenguaje}!`);
+
+// Pregunta adicional
+let respuesta = prompt(`¿Te gusta estudiar ${lenguaje}? Responde con el número 1 para SÍ o 2 para NO.`);
+
+// Respuesta basada en la entrada
+if (respuesta === "1") {
+    alert("¡Muy bien! Sigue estudiando y tendrás mucho éxito.");
+} else if (respuesta === "2") {
+    alert("Oh, qué pena... ¿Ya intentaste aprender otros lenguajes?");
+} else {
+    alert("Respuesta no válida. Por favor, responde con 1 o 2 la próxima vez.");
+}
+
+
+#7DaysOfCode - Lógica JS 3/7: Estructuras de control de flujo
+function juegoDesarrollo() {
+  alert("¡Bienvenido al juego de desarrollo de software!");
+
+  // Primer decisión: área de especialización
+  let area = prompt("¿A qué área te gustaría dirigirte?\n1. Front-End\n2. Back-End\nEscribe '1' o '2':");
+  
+  if (area === "1") {
+    alert("Has elegido el área de Front-End.");
+    let tecnologiaFront = prompt("¿Qué tecnología te gustaría aprender?\n1. React\n2. Vue\nEscribe '1' o '2':");
+    
+    if (tecnologiaFront === "1") {
+      alert("Has decidido aprender React, una poderosa biblioteca de JavaScript para interfaces de usuario.");
+    } else if (tecnologiaFront === "2") {
+      alert("Has decidido aprender Vue, un framework progresivo y amigable para construir interfaces web.");
+    } else {
+      alert("Opción no válida. Continuando con Front-End.");
+    }
+
+  } else if (area === "2") {
+    alert("Has elegido el área de Back-End.");
+    let tecnologiaBack = prompt("¿Qué lenguaje te gustaría aprender?\n1. C#\n2. Java\nEscribe '1' o '2':");
+    
+    if (tecnologiaBack === "1") {
+      alert("Has decidido aprender C#, un lenguaje versátil muy usado en el desarrollo de aplicaciones y videojuegos.");
+    } else if (tecnologiaBack === "2") {
+      alert("Has decidido aprender Java, un lenguaje robusto y ampliamente utilizado en el desarrollo empresarial.");
+    } else {
+      alert("Opción no válida. Continuando con Back-End.");
+    }
+
+  } else {
+    alert("Opción no válida. Volviendo al inicio.");
+    return juegoDesarrollo();
+  }
+
+  // Segunda decisión: especialización o fullstack
+  let camino = prompt("Ahora debes decidir:\n1. Especializarte más en esta área.\n2. Convertirte en un desarrollador Fullstack.\nEscribe '1' o '2':");
+  
+  if (camino === "1") {
+    alert("¡Has decidido especializarte en tu área! Seguirás profundizando tus conocimientos.");
+  } else if (camino === "2") {
+    alert("¡Has decidido convertirte en Fullstack! Ahora serás un experto tanto en Front-End como en Back-End.");
+  } else {
+    alert("Opción no válida. Continuando como especialista en tu área elegida.");
+  }
+
+  // Bucle para ingresar tecnologías
+  alert("Ahora, dime las tecnologías que te gustaría aprender.");
+  let tecnologias = [];
+  while (true) {
+    let nuevaTecnologia = prompt("Escribe el nombre de una tecnología (o escribe 'salir' para terminar):");
+    if (nuevaTecnologia.toLowerCase() === "salir") {
+      break;
+    }
+    tecnologias.push(nuevaTecnologia);
+    alert(`¡Genial! ${nuevaTecnologia} es una excelente elección.`);
+  }
+
+  // Mostrar las tecnologías elegidas
+  alert("Estas son las tecnologías que has decidido aprender:\n" + tecnologias.map(t => `- ${t}`).join("\n"));
+  alert("¡Sigue aprendiendo y desarrollándote como programador!");
+}
+
+// Ejecutar el juego
+juegoDesarrollo();
+
+
+#7DaysOfCode - Lógica JS 4/7: Mas loops y randomización
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Adivina el Número</title>
+</head>
+<body>
+  <h1>Juego de Adivina el Número</h1>
+  <button onclick="adivinarNumero()">Empezar Juego</button>
+
+  <script>
+    function adivinarNumero() {
+      // La computadora elige un número aleatorio entre 0 y 10
+      let numeroAdivinar = Math.floor(Math.random() * (10 - 0 + 1) + 0);
+
+      // Variables para controlar los intentos
+      let intentos = 3;
+      let adivinaste = false;
+
+      while (intentos > 0 && !adivinaste) {
+        // Preguntamos al usuario por su intento
+        let intento = prompt(`Tienes ${intentos} intentos restantes. ¿Cuál es tu número?`);
+
+        // Convertimos la respuesta a un número
+        intento = parseInt(intento);
+
+        // Verificamos si el intento es correcto
+        if (intento === numeroAdivinar) {
+          alert("¡Felicidades! Has adivinado el número.");
+          adivinaste = true; // El usuario adivinó el número
+        } else {
+          intentos--; // Si no es correcto, restamos un intento
+          if (intentos > 0) {
+            alert("¡No es el número correcto! Intenta nuevamente.");
+          }
+        }
+      }
+
+      // Si no adivinó el número después de 3 intentos, mostramos el número
+      if (!adivinaste) {
+        alert(`Lo siento, no adivinaste el número. El número correcto era: ${numeroAdivinar}`);
+      }
+    }
+  </script>
+</body>
+</html>
+
+
