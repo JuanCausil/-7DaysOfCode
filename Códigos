@@ -166,3 +166,82 @@ juegoDesarrollo();
 </html>
 
 
+
+#7DaysOfCode - Lógica JS 7/7: Funciones en javascript 
+
+function calculadora() {
+  // Función para sumar
+  function suma(a, b) {
+    return a + b;
+  }
+
+  // Función para restar
+  function resta(a, b) {
+    return a - b;
+  }
+
+  // Función para multiplicar
+  function multiplicacion(a, b) {
+    return a * b;
+  }
+
+  // Función para dividir
+  function division(a, b) {
+    if (b === 0) {
+      return "No se puede dividir entre cero.";
+    }
+    return a / b;
+  }
+
+  // Inicio de la calculadora
+  while (true) {
+    let opcion = prompt(
+      "Elige una opción:\n1. Suma\n2. Resta\n3. Multiplicación\n4. División\n5. Salir"
+    );
+
+    if (opcion === "5") {
+      alert("Hasta la próxima");
+      break;
+    }
+
+    // Validar que la opción sea válida
+    if (!["1", "2", "3", "4"].includes(opcion)) {
+      alert("Opción no válida. Por favor, elige una opción del 1 al 5.");
+      continue;
+    }
+
+    // Pedir los números al usuario
+    let num1 = parseFloat(prompt("Ingresa el primer número:"));
+    let num2 = parseFloat(prompt("Ingresa el segundo número:"));
+
+    // Validar que los números sean válidos
+    if (isNaN(num1) || isNaN(num2)) {
+      alert("Por favor, ingresa números válidos.");
+      continue;
+    }
+
+    // Ejecutar la operación correspondiente
+    let resultado;
+    switch (opcion) {
+      case "1":
+        resultado = suma(num1, num2);
+        alert(`El resultado de la suma es: ${resultado}`);
+        break;
+      case "2":
+        resultado = resta(num1, num2);
+        alert(`El resultado de la resta es: ${resultado}`);
+        break;
+      case "3":
+        resultado = multiplicacion(num1, num2);
+        alert(`El resultado de la multiplicación es: ${resultado}`);
+        break;
+      case "4":
+        resultado = division(num1, num2);
+        alert(`El resultado de la división es: ${resultado}`);
+        break;
+    }
+  }
+}
+
+// Ejecutar la calculadora
+calculadora();
